@@ -22,6 +22,7 @@ jobs:
           toolchain: ${{ matrix.version }}
           override: true
           target: ${{ matrix.target }}
+          profile: minimal
 
       - name: Install ${{ matrix.version }}
         if: matrix.os != 'windows-latest'
