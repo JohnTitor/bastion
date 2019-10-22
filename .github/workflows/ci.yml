@@ -20,9 +20,9 @@ jobs:
         uses: actions-rs/toolchain@v1
         with:
           toolchain: ${{ matrix.version }}
-          override: true
           target: ${{ matrix.target }}
           profile: minimal
+          override: true
 
       - name: Install ${{ matrix.version }}
         if: matrix.os != 'windows-latest'
