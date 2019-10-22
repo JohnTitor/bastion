@@ -32,7 +32,10 @@ jobs:
           override: true
 
       - name: Check rustc
-        run: rustc -vV
+        if: matrix.os == 'windows-latest'
+        run: |
+          rustup default ${{ matrix.target }}
+          rustc -vV
 
       - name: check nightly
         if: matrix.version == 'nightly'
