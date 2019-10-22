@@ -34,7 +34,7 @@ jobs:
       - name: Check rustc
         if: matrix.os == 'windows-latest'
         run: |
-          rustup default ${{ matrix.target }}
+          rustup default ${{ matrix.version }}-${{ matrix.target }}
           rustc -vV
 
       - name: check nightly
