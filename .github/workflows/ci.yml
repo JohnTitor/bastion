@@ -10,11 +10,21 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest, macOS-latest]
         version: [stable, nightly]
+        target: [i686-pc-windows-msvc, x86_64-pc-windows-gnu, x86_64-pc-windows-msvc]
 
     steps:
       - uses: actions/checkout@master
 
+      - name: Install ${{ matrix.version }} on ${{ matrix.target }}
+        if: matrix.os == 'windows-latest'
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: ${{ matrix.version }}
+          override: true
+          target: ${{ matrix.target }}
+
       - name: Install ${{ matrix.version }}
+        if: matrix.os != 'windows-latest'
         uses: actions-rs/toolchain@v1
         with:
           toolchain: ${{ matrix.version }}
